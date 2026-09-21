@@ -30,7 +30,7 @@
     font-family:'Indie Flower','Bradley Hand','Segoe Script',cursive;
   }
   @media (max-width:768px){
-    #main-title{font-size:1.55em;top:22px;white-space:normal;padding:0 10px;line-height:1.15;}
+    #main-title{font-size:1.35em;top:20px;white-space:normal;padding:0 15px;line-height:1.25;}
   }
 
   #start-screen{
@@ -117,6 +117,13 @@ renderer.setSize(innerWidth,innerHeight);
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,5000);
 let targetDist=300,currentDist=300,rotX=0.2,rotY=0;
+
+// Ajuste automático para móviles cuando se gira la pantalla o cambia el tamaño
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
 
 // Fondo: negro solido + el campo de estrellas generado abajo. La textura
 // de nebulosa externa que traia el archivo original apuntaba a una URL de
