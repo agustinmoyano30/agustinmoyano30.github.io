@@ -318,12 +318,14 @@ tick();
 
 // Arranque
 const startScreen=document.getElementById('start-screen');
-function startExperience(){
+function startExperience(e){
+  if(e) e.preventDefault();
   startScreen.classList.add('hidden');
   setTimeout(()=>startScreen.style.display='none',800);
   audio.play().catch(()=>{});
 }
 startScreen.addEventListener('click',startExperience);
+startScreen.addEventListener('touchstart',startExperience, {passive: false});
 </script>
 </body>
 </html>
